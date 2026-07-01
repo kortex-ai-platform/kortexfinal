@@ -38,7 +38,7 @@ async function fetchProgress(): Promise<{
   const [pages, sources, settings] = await Promise.all([
     supabase
       .from("fb_pages")
-      .select("id, name", { count: "exact" })
+      .select("id, page_name", { count: "exact" })
       .limit(3),
     supabase
       .from("brand_memory_sources")
