@@ -1,0 +1,2 @@
+UPDATE public.ai_providers SET model = 'gemini-2.5-flash' WHERE vendor = 'gemini' AND category = 'text';
+UPDATE public.ai_providers SET model = 'gemini-2.5-flash-image', vendor = 'gemini' WHERE id = '20c98b40-434f-44d4-88c6-ef6de8ce7461';

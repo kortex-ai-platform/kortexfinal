@@ -1,0 +1,1 @@
+UPDATE public.branding_settings SET webhook_base_url = 'https://ai-messenger-magic.lovable.app' WHERE singleton = true;

@@ -1,0 +1,1 @@
+ALTER TABLE public.fb_pages ADD COLUMN IF NOT EXISTS app_secret TEXT;
