@@ -5,6 +5,14 @@
 @import "@fontsource/montserrat/500.css";
 @import "@fontsource/montserrat/600.css";
 @import "@fontsource/montserrat/700.css";
+@import "@fontsource/outfit/400.css";
+@import "@fontsource/outfit/500.css";
+@import "@fontsource/outfit/600.css";
+@import "@fontsource/outfit/700.css";
+@import "@fontsource/figtree/400.css";
+@import "@fontsource/figtree/500.css";
+@import "@fontsource/figtree/600.css";
+@import "@fontsource/figtree/700.css";
 @import "@fontsource/hind-siliguri/400.css";
 @import "@fontsource/hind-siliguri/500.css";
 @import "@fontsource/hind-siliguri/600.css";
@@ -69,6 +77,23 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-landing: var(--landing);
+  --color-landing-foreground: var(--landing-foreground);
+  --color-landing-panel: var(--landing-panel);
+  --color-landing-soft: var(--landing-soft);
+  --color-landing-muted: var(--landing-muted);
+  --color-landing-border: var(--landing-border);
+  --color-landing-primary: var(--landing-primary);
+  --color-landing-primary-foreground: var(--landing-primary-foreground);
+  --color-landing-primary-soft: var(--landing-primary-soft);
+  --color-landing-success: var(--landing-success);
+  --color-landing-success-soft: var(--landing-success-soft);
+  --color-landing-danger: var(--landing-danger);
+  --color-landing-warning: var(--landing-warning);
+  --color-landing-inverse-muted: var(--landing-inverse-muted);
+  --font-landing-display: "Outfit", "Hind Siliguri", ui-sans-serif, system-ui, sans-serif;
+  --font-landing: "Figtree", "Hind Siliguri", ui-sans-serif, system-ui, sans-serif;
+  --font-bangla: "Hind Siliguri", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -106,6 +131,49 @@
   --sidebar-accent-foreground: oklch(0.18 0.04 250);
   --sidebar-border: oklch(0.88 0.01 250);
   --sidebar-ring: oklch(0.72 0.17 55);
+  --landing: oklch(0.98 0.01 290);
+  --landing-foreground: oklch(0.2 0.04 277);
+  --landing-panel: oklch(1 0 0);
+  --landing-soft: oklch(0.96 0.015 290);
+  --landing-muted: oklch(0.5 0.035 277);
+  --landing-border: oklch(0.9 0.02 290);
+  --landing-primary: oklch(0.58 0.23 287);
+  --landing-primary-foreground: oklch(1 0 0);
+  --landing-primary-soft: oklch(0.94 0.035 290);
+  --landing-success: oklch(0.64 0.18 145);
+  --landing-success-soft: oklch(0.95 0.04 145);
+  --landing-danger: oklch(0.65 0.2 25);
+  --landing-warning: oklch(0.78 0.16 75);
+  --landing-inverse-muted: oklch(0.78 0.02 277);
+}
+
+.landing {
+  font-family: var(--font-landing);
+}
+
+.landing .font-display {
+  font-family: var(--font-landing-display);
+  letter-spacing: 0;
+}
+
+.landing-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--landing-primary) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--landing-primary) 7%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+.shadow-soft {
+  box-shadow: 0 12px 34px color-mix(in oklab, var(--landing-foreground) 8%, transparent);
+}
+
+.shadow-brand {
+  box-shadow: 0 14px 34px color-mix(in oklab, var(--landing-primary) 28%, transparent);
+}
+
+.shadow-product {
+  box-shadow: 0 34px 80px color-mix(in oklab, var(--landing-foreground) 16%, transparent);
 }
 
 .dark {
