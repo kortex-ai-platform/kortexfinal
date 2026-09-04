@@ -131,7 +131,7 @@ function Hero() {
       <div className="relative mx-auto max-w-5xl text-center">
         <Reveal>
           <div className="inline-flex items-center gap-2 rounded-full border border-landing-border bg-landing-panel px-4 py-2 text-xs font-semibold text-landing-primary shadow-soft sm:text-sm">
-            <Sparkles className="size-4" /> বাংলা + English AI Sales Automation
+            <Sparkles className="size-4" /> AI Sales Automation
           </div>
           <h1 className="mx-auto mt-7 max-w-4xl font-display text-4xl font-bold leading-[1.08] sm:text-6xl lg:text-7xl">
             Every message can become <span className="text-landing-primary">your next sale.</span>
