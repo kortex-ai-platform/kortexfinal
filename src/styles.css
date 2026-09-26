@@ -242,6 +242,7 @@
   --sidebar-border: oklch(0.91 0.022 290);
   --sidebar-ring: oklch(0.55 0.245 290);
   color-scheme: light;
+  color: var(--foreground);
 }
 
 @layer base {
