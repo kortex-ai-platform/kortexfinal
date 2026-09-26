@@ -53,10 +53,7 @@ function AdminLayout() {
               <span className="ml-1 rounded-md border border-primary/15 bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary">
                 ADMIN MODE
               </span>
-              <span className="hidden items-center gap-1.5 text-xs font-medium text-muted-foreground md:flex">
-                <Circle className="size-2 fill-success text-success animate-pulse" />
-                System online
-              </span>
+              <Circle aria-label="Online" className="hidden size-2 fill-success text-success animate-pulse md:block" />
             </div>
             <div className="flex items-center gap-2">
               <Button size="sm" variant="ghost" asChild>

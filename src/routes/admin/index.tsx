@@ -43,17 +43,12 @@ function AdminOverview() {
 
   return (
     <div className="mx-auto max-w-7xl space-y-8">
-      <div className="flex flex-col gap-2 border-b border-border pb-6 sm:flex-row sm:items-end sm:justify-between">
+      <div className="border-b border-border pb-6">
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-primary">Command Center</p>
           <h1 className="font-display text-3xl font-semibold">Admin Control Panel</h1>
           <p className="mt-1.5 text-sm text-muted-foreground">
           Platform-wide visibility across tenants, billing, AI, channels, and operations.
           </p>
-        </div>
-        <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-          <span className="size-2 rounded-full bg-success shadow-[0_0_0_4px_color-mix(in_oklab,var(--success)_14%,transparent)]" />
-          Live workspace data
         </div>
       </div>
 
@@ -80,7 +75,6 @@ function AdminOverview() {
       <section className="space-y-4">
         <div>
           <h2 className="font-display text-xl font-semibold">All admin sections</h2>
-          <p className="mt-1 text-sm text-muted-foreground">Access every area of the control panel.</p>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {sections.map((s) => (
