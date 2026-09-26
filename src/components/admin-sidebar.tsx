@@ -43,32 +43,32 @@ export function AdminSidebar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <Sidebar collapsible="icon">
-      <SidebarHeader className="border-b">
-        <Link to="/admin" className="flex items-center gap-2 px-2 py-1.5">
-          <div className="grid h-8 w-8 place-items-center rounded-lg bg-destructive text-destructive-foreground">
+    <Sidebar collapsible="icon" className="border-r border-sidebar-border">
+      <SidebarHeader className="border-b border-sidebar-border px-2 py-3">
+        <Link to="/admin" className="flex min-h-10 items-center gap-3 px-1.5">
+          <div className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground shadow-sm">
             <Shield className="h-4 w-4" />
           </div>
           {!collapsed && (
             <div className="flex flex-col">
-              <span className="text-sm font-semibold leading-none">Super Admin</span>
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Control Panel</span>
+              <span className="font-display text-sm font-semibold leading-none">Super Admin</span>
+              <span className="mt-1 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">Control Panel</span>
             </div>
           )}
         </Link>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="px-1 py-3">
         {groups.map((g) => (
           <SidebarGroup key={g.label}>
-            {!collapsed && <SidebarGroupLabel>{g.label}</SidebarGroupLabel>}
+            {!collapsed && <SidebarGroupLabel className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">{g.label}</SidebarGroupLabel>}
             <SidebarGroupContent>
               <SidebarMenu>
                 {g.items.map((item) => {
                   const active = pathname === item.to;
                   return (
                     <SidebarMenuItem key={item.to}>
-                      <SidebarMenuButton asChild isActive={active}>
-                        <Link to={item.to} className="flex items-center gap-2">
+                      <SidebarMenuButton asChild isActive={active} tooltip={item.label} className="h-9 rounded-md data-[active=true]:border data-[active=true]:border-sidebar-primary/15 data-[active=true]:bg-sidebar-primary/10 data-[active=true]:font-semibold data-[active=true]:text-sidebar-primary">
+                        <Link to={item.to} className="flex items-center gap-2.5">
                           <item.icon className="h-4 w-4" />
                           {!collapsed && <span>{item.label}</span>}
                         </Link>
