@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet, redirect, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Circle } from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -44,18 +44,22 @@ function AdminLayout() {
 
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen w-full bg-background">
+      <div className="admin-console flex min-h-screen w-full bg-background">
         <AdminSidebar />
         <SidebarInset className="flex flex-1 flex-col">
-          <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-border bg-background/85 px-4 backdrop-blur">
+          <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-background/90 px-4 backdrop-blur-xl md:px-7">
             <div className="flex items-center gap-2">
               <SidebarTrigger />
-              <span className="ml-2 rounded-md bg-destructive/10 px-2 py-0.5 text-xs font-medium text-destructive">
+              <span className="ml-1 rounded-md border border-primary/15 bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary">
                 ADMIN MODE
+              </span>
+              <span className="hidden items-center gap-1.5 text-xs font-medium text-muted-foreground md:flex">
+                <Circle className="size-2 fill-success text-success animate-pulse" />
+                System online
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <Button size="sm" variant="outline" asChild>
+              <Button size="sm" variant="ghost" asChild>
                 <Link to="/dashboard">
                   <ArrowLeft className="mr-1 h-3.5 w-3.5" />
                   User Dashboard
@@ -67,7 +71,7 @@ function AdminLayout() {
               </Button>
             </div>
           </header>
-          <main className="flex-1 p-6">
+          <main className="flex-1 px-4 py-6 md:px-8 md:py-8">
             <Outlet />
           </main>
         </SidebarInset>

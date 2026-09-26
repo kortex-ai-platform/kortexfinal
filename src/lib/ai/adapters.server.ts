@@ -67,11 +67,16 @@ function requireKey(p: ProviderRow): string {
   return p.api_key;
 }
 
+function cleanModel(model: string | null | undefined, fallback: string): string {
+  const cleaned = model?.trim();
+  return cleaned || fallback;
+}
+
 /* ---------- Gemini (Google AI Studio) ---------- */
 const geminiAdapter: Adapter = {
   async call(p, payload) {
     const key = requireKey(p);
-    const model = p.model || "gemini-2.5-flash";
+    const model = cleanModel(p.model, "gemini-2.5-flash").replace(/^models\//, "");
     const body = payload as any;
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(key)}`;
     const r = await fetchJson(
@@ -122,7 +127,7 @@ function openAiAdapter(defaultBase: string): Adapter {
             authorization: `Bearer ${key}`,
           },
           body: JSON.stringify({
-            model: p.model || "gpt-4o-mini",
+            model: cleanModel(p.model, "gpt-4o-mini"),
             messages: [
               ...(body.system ? [{ role: "system", content: body.system }] : []),
               { role: "user", content: body.prompt },
@@ -165,7 +170,7 @@ const claudeAdapter: Adapter = {
           "anthropic-version": "2023-06-01",
         },
         body: JSON.stringify({
-          model: p.model || "claude-3-5-sonnet-latest",
+          model: cleanModel(p.model, "claude-3-5-sonnet-latest"),
           max_tokens: body.max_tokens ?? 1024,
           temperature: body.temperature ?? 0.7,
           ...(body.system ? { system: body.system } : {}),
@@ -199,7 +204,7 @@ const openAiImageAdapter: Adapter = {
           authorization: `Bearer ${key}`,
         },
         body: JSON.stringify({
-          model: p.model || "gpt-image-1",
+          model: cleanModel(p.model, "gpt-image-1"),
           prompt: body.prompt,
           size: body.size || "1024x1024",
         }),
@@ -279,7 +284,7 @@ const openAiTtsAdapter: Adapter = {
         method: "POST",
         headers: { "content-type": "application/json", authorization: `Bearer ${key}` },
         body: JSON.stringify({
-          model: p.model || "gpt-4o-mini-tts",
+          model: cleanModel(p.model, "gpt-4o-mini-tts"),
           input: body.input,
           voice: body.voice || "alloy",
         }),
@@ -324,7 +329,7 @@ const openAiSttAdapter: Adapter = {
     const bin = Buffer.from(body.audioBase64, "base64");
     const form = new FormData();
     form.append("file", new Blob([bin], { type: body.mime || "audio/mpeg" }), "audio");
-    form.append("model", p.model || "gpt-4o-mini-transcribe");
+    form.append("model", cleanModel(p.model, "gpt-4o-mini-transcribe"));
     const { signal, cancel } = withTimeout(p.timeout_ms);
     try {
       const res = await fetch(`${base.replace(/\/$/, "")}/audio/transcriptions`, {
@@ -365,7 +370,7 @@ const elevenLabsAdapter: Adapter = {
   async call(p, payload) {
     const key = requireKey(p);
     const body = payload as any;
-    const voice = body.voice || p.model || "21m00Tcm4TlvDq8ikWAM";
+    const voice = body.voice || cleanModel(p.model, "21m00Tcm4TlvDq8ikWAM");
     const { signal, cancel } = withTimeout(p.timeout_ms);
     try {
       const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice}`, {
